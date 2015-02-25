@@ -14,7 +14,7 @@ LOCAL_MODULE := powertop
 #LOCAL_CPPFLAGS += -Wall -O2 -g -fno-omit-frame-pointer
 
 LOCAL_CFLAGS += -DHAVE_LIBNL20
-LOCAL_CPPFLAGS += -DPACKAGE_VERSION=\"2.7\" -DPACKAGE=powertop -DHAVE_LIBNL20
+LOCAL_CPPFLAGS += -DPACKAGE_VERSION=\"2.7\" -DPACKAGE=powertop -DHAVE_LIBNL20 -DDISABLE_TRYCATCH
 
 LOCAL_C_INCLUDES += external/stlport/stlport/ external/stlport/stlport/stl external/stlport/stlport/using/h/  bionic external/libnl/include/
 
