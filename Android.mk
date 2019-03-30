@@ -5,7 +5,7 @@ LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
 LOCAL_MODULE_TAGS := debug
-LOCAL_SHARED_LIBRARIES := libstlport \
+LOCAL_SHARED_LIBRARIES := libc++ \
 			  libnl \
 
 LOCAL_MODULE := powertop  
@@ -13,13 +13,13 @@ LOCAL_MODULE := powertop
 #LOCAL_CFLAGS += -Wall -O2 -g -fno-omit-frame-pointer -fstack-protector -Wshadow -Wformat -D_FORTIFY_SOURCE=2
 #LOCAL_CPPFLAGS += -Wall -O2 -g -fno-omit-frame-pointer
 
-LOCAL_CFLAGS += -DHAVE_LIBNL20
-LOCAL_CPPFLAGS += -DPACKAGE_VERSION=\"2.7\" -DPACKAGE=powertop -DHAVE_LIBNL20 -DDISABLE_TRYCATCH
+LOCAL_CFLAGS += -DHAVE_LIBNL20 -Wno-error
+LOCAL_CPPFLAGS += -DPACKAGE_VERSION=\"2.7\" -DPACKAGE_SHORT_VERSION=\"2.7\" -DPACKAGE=powertop -DHAVE_LIBNL20 -DDISABLE_TRYCATCH
 
-LOCAL_C_INCLUDES += external/stlport/stlport/ external/stlport/stlport/stl external/stlport/stlport/using/h/  bionic external/libnl/include/
+LOCAL_C_INCLUDES += bionic external/libnl/include/
 
 # ncurses
-LOCAL_C_INCLUDES += external/ncurses/include/
+LOCAL_C_INCLUDES += external/libncurses/include/
 LOCAL_SHARED_LIBRARIES += libncurses
 
 # pciutils
@@ -57,6 +57,7 @@ LOCAL_SRC_FILES += \
 	src/measurement/measurement.cpp \
 	src/measurement/acpi.cpp \
 	src/measurement/extech.cpp \
+	src/measurement/opal-sensors.cpp \
 	src/measurement/sysfs.cpp \
 	src/display.cpp \
 	src/report/report.cpp \
@@ -73,7 +74,6 @@ LOCAL_SRC_FILES += \
 	src/tuning/ethernet.cpp \
 	src/tuning/runtime.cpp \
 	src/tuning/iw.c \
-	src/tuning/iw.h \
 	src/tuning/tunable.cpp \
 	src/tuning/tuningsysfs.cpp \
 	src/tuning/wifi.cpp \
@@ -95,6 +95,10 @@ LOCAL_SRC_FILES += \
 	src/devlist.cpp \
 	src/calibrate/calibrate.cpp \
 	src/lib.cpp \
+	src/wakeup/waketab.cpp \
+	src/wakeup/wakeup.cpp \
+	src/wakeup/wakeup_ethernet.cpp \
+	src/wakeup/wakeup_usb.cpp \
 	traceevent/event-parse.c \
 	traceevent/parse-filter.c \
 	traceevent/parse-utils.c \
