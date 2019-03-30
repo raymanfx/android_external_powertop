@@ -53,7 +53,9 @@ extern "C" {
 #include <sys/stat.h>
 #include <dirent.h>
 #include <locale.h>
+#ifdef ENABLE_NLS
 #include <libintl.h>
+#endif
 #include <limits>
 #include <math.h>
 #include <ncurses.h>
