@@ -284,6 +284,7 @@ string read_sysfs_string(const char *format, const char *param)
 void align_string(char *buffer, size_t min_sz, size_t max_sz)
 {
 	size_t sz;
+	char *buf = buffer;
 
 	/** mbsrtowcs() allows NULL dst and zero sz,
 	 * comparing to mbstowcs(), which causes undefined
@@ -296,8 +297,9 @@ void align_string(char *buffer, size_t min_sz, size_t max_sz)
 		buffer[min_sz] = 0x00;
 		return;
 	}
+
 	while (sz < min_sz) {
-		strcat(buffer, " ");
+		strcat(buf, " ");
 		sz++;
 	}
 }
